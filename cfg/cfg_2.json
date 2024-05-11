@@ -1,0 +1,6 @@
+{
+  "cityNames": ["San Francisco", "Moscow", "Rome", "Copenhagen", "Warsaw", "Paris"],
+  "refreshInterval": 10,
+  "countDays": 10,
+  "apiCode": "USER_API_CODE"
+}

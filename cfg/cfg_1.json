@@ -1,0 +1,6 @@
+{
+  "cityNames": ["Saint Petersburg", "Moscow", "Berlin"],
+  "refreshInterval": 1,
+  "countDays": 4,
+  "apiCode": "USER_API_CODE"
+}
