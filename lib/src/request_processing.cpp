@@ -1,4 +1,4 @@
-#include "request_processing.h"
+#include "lib/include/request_processing.h"
 
 WeatherDescription::WeatherDescription(const json& data_from_api, int day_after_current, int day_after_current_time) {
     wmo_code_ = data_from_api["hourly"]["weather_code"][kHoursPerDay * day_after_current + day_after_current_time];

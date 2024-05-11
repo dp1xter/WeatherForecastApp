@@ -1,4 +1,4 @@
-#include "config_parser.h"
+#include "../include/config_parser.h"
 
 void ConfigParser::ConfigureData(const std::filesystem::path& json_file) {
     std::ifstream json_path(json_file);

@@ -1,5 +1,5 @@
-#include <lib/request_processing.h>
-#include <lib/interface_processing.h>
+#include "request_processing.h"
+#include "interface_processing.h"
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {

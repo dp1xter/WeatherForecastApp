@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cpr/cpr.h>
+#include "cpr/cpr.h"
 #include "config_parser.h"
 #include <cstdlib>
 

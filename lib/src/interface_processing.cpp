@@ -1,4 +1,4 @@
-#include "interface_processing.h"
+#include "lib/include/interface_processing.h"
 
 ftxui::Element Icon::ClearSky() {
     return ftxui::vbox({

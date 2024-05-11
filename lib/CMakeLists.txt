@@ -1,6 +1,6 @@
-add_library(request_processing request_processing.h request_processing.cpp)
-add_library(config_parser config_parser.h config_parser.cpp)
-add_library(interface_processing interface_processing.h interface_processing.cpp)
+add_library(request_processing include/request_processing.h src/request_processing.cpp)
+add_library(config_parser include/config_parser.h src/config_parser.cpp)
+add_library(interface_processing include/interface_processing.h src/interface_processing.cpp)
 
 target_include_directories(request_processing PUBLIC ${PROJECT_SOURCE_DIR})
 
