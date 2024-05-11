@@ -235,9 +235,7 @@ void PrintForecast(RequestProcessor& requester, const ConfigParser& cfg_parser) 
             previous_timer = current_timer;
         }
 
-        if (validating_response_from_api != UpdatingStatus::kSuccess) {
-            return FailureTerminalOutput(validating_response_from_api);
-        }
+        if (validating_response_from_api != UpdatingStatus::kSuccess) return FailureTerminalOutput(validating_response_from_api);
 
         return SuccessfulTerminalOutput(requester.GetCityData(current_city), start_day);
     }) | ftxui::CatchEvent([&](const ftxui::Event& event) {

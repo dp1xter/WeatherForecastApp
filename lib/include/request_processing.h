@@ -24,7 +24,7 @@ class WeatherDescription {
 public:
     WeatherDescription() = default;
 
-    WeatherDescription(const json& data_from_api, int day_after_current, int day_after_current_time);
+    explicit WeatherDescription(const json& data_from_api, int day_after_current, int day_after_current_time);
 
     [[nodiscard]] int GetCode() const;
 
@@ -47,7 +47,7 @@ class DayDescription {
 public:
     DayDescription() = default;
 
-    DayDescription(const json& data_open_meteo, int day_after_current);
+    explicit DayDescription(const json& data_open_meteo, int day_after_current);
 
     [[nodiscard]] std::string GetCalendarDate() const;
 
@@ -55,7 +55,7 @@ public:
 
     [[nodiscard]] WeatherDescription At(int day_after_current_time) const;
 private:
-    std::string calendar_date_ = "None";
+    std::string calendar_date_;
     WeatherDescription weather_day_[kCountDayTime];
 };
 
@@ -71,7 +71,7 @@ public:
 
     [[nodiscard]] DayDescription At(int day_after_current) const;
 private:
-    std::string city_name_ = "None";
+    std::string city_name_;
     DayDescription forecast_[kMaxByDayForecast];
 };
 

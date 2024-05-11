@@ -9,7 +9,6 @@ void ConfigParser::ConfigureData(const std::filesystem::path& json_file) {
     json data = json::parse(json_path);
 
     cities_name_ = std::vector<std::string> (data["cityNames"].begin(), data["cityNames"].end());
-
     refresh_interval_ = data["refreshInterval"];
     days_number_ = data["countDays"];
     user_api_code_ = data["apiCode"];

@@ -47,9 +47,7 @@ WeatherDescription DayDescription::At(int day_after_current_time) const {
     return weather_day_[day_after_current_time];
 }
 
-City::City(const std::string& city_name) {
-    city_name_ = city_name;
-}
+City::City(const std::string& city_name) : city_name_(city_name) {}
 
 std::string City::GetName() const {
     return city_name_;
@@ -63,8 +61,7 @@ DayDescription City::At(int day_after_current) const {
     return forecast_[day_after_current];
 }
 
-RequestProcessor::RequestProcessor(const ConfigParser& cfg_parser) {
-    cfg_parser_ = cfg_parser;
+RequestProcessor::RequestProcessor(const ConfigParser& cfg_parser) : cfg_parser_(cfg_parser) {
     cities_.resize(cfg_parser_.GetCountOfCities());
 }
 
@@ -81,21 +78,15 @@ bool RequestProcessor::HasFirstUpdate() const {
 }
 
 UpdatingStatus ValidatingApiNinjaResponse(const cpr::Response& response_ninja) {
-    if (response_ninja.status_code != kSuccessStatusCode) {
-        return UpdatingStatus::kApiNinjasNoConnection;
-    }
+    if (response_ninja.status_code != kSuccessStatusCode) return UpdatingStatus::kApiNinjasNoConnection;
 
-    if (response_ninja.text == "[]") {
-        return UpdatingStatus::kInvalidCityName;
-    }
+    if (response_ninja.text == "[]") return UpdatingStatus::kInvalidCityName;
 
     return UpdatingStatus::kSuccess;
 }
 
 UpdatingStatus ValidatingOpenMeteoResponse(const cpr::Response& response_open_meteo) {
-    if (response_open_meteo.status_code != kSuccessStatusCode) {
-        return UpdatingStatus::kOpenMeteoNoConnection;
-    }
+    if (response_open_meteo.status_code != kSuccessStatusCode) return UpdatingStatus::kOpenMeteoNoConnection;
 
     return UpdatingStatus::kSuccess;
 }
@@ -110,9 +101,7 @@ UpdatingStatus RequestProcessor::UpdateData() {
                                                       cpr::Parameters {{"name", cfg_parser_.GetCity(i)}});
 
         const UpdatingStatus validating_api_ninja = ValidatingApiNinjaResponse(response_ninja);
-        if (validating_api_ninja != UpdatingStatus::kSuccess) {
-            return validating_api_ninja;
-        }
+        if (validating_api_ninja != UpdatingStatus::kSuccess) return validating_api_ninja;
 
         const json data_ninja = json::parse(response_ninja.text);
         const double latitude = data_ninja[0]["latitude"];
@@ -130,9 +119,7 @@ UpdatingStatus RequestProcessor::UpdateData() {
                                                                    {"hourly", "precipitation"}});
 
         const UpdatingStatus validating_open_meteo = ValidatingOpenMeteoResponse(response_open_meteo);
-        if (validating_open_meteo != UpdatingStatus::kSuccess) {
-            return validating_open_meteo;
-        }
+        if (validating_open_meteo != UpdatingStatus::kSuccess) return validating_open_meteo;
 
         const json data_open_meteo = json::parse(response_open_meteo.text);
         for (int j = 0; j < kMaxByDayForecast; ++j) {
